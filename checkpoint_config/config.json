@@ -194,5 +194,5 @@
   },
   "vision_end_token_id": 248054,
   "vision_start_token_id": 248053,
-  "nvfp2_lm20_note": "Serving view over Qwen3.8-Flash-Next-NVFP2-lm20 (true 2-bit experts, 4 codes/byte). Requires SGLANG_NVFP2_LM20=1 + opt3 patched sglang files."
+  "nvfp2_lm20_note": "SDnvfp2: routed experts stored as 2-bit codes (4 per byte) with the NVFP4 scale hierarchy. Requires SGLANG_NVFP2_LM20=1 and the SDnvfp2 patched sglang files (GitHub: Qwen3.8-Next-SDnvfp2)."
 }
