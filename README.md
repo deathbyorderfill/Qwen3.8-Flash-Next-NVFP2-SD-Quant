@@ -95,4 +95,6 @@ sidecars/                   draft_vocab_top65536.pt (draft-head vocabulary)
 bench/                      the scripts behind the numbers above
 docs/                       the benchmark chart
 ```
-See `NOTICE` for the provenance of the modified files.
+See `NOTICE` for the provenance of the modified files. The weights on Hugging Face are under the Qwen Community
+License 1.0 (`LICENSE-QWEN-WEIGHTS`, copied from the base model): redistribution of derivatives is permitted with
+that notice; no commercial model-as-a-service / AI-assistant use without a separate Qwen license.
