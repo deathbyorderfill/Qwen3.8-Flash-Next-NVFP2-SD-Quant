@@ -60,7 +60,9 @@ curl -s localhost:8934/health && curl -s localhost:8934/v1/chat/completions -H '
 `CTX` and lower nothing else, the KV pool is what remains after weights), `MEMFRAC` (0.80; the
 loader prints its minimum, 0.75 is enough on some launches), `ACC` (speculative accept threshold,
 0.7; affects sampled traffic only, set 1.0 for strict rejection sampling), `CODES` (dense codes
-dir if not inside the checkpoint). Extra arguments are passed to `sglang.launch_server`. The
+dir if not inside the checkpoint), `VISION=1` to load the vision tower (default text-only: every number above
+was measured with `--language-only`; the tower is in the checkpoint and answered an image test on an earlier
+build, but vision on this exact build is unmeasured and costs a few GB of the pool). Extra arguments are passed to `sglang.launch_server`. The
 OpenAI-compatible API is at `/v1`; thinking is on by default (`reasoning_content` is returned
 separately); tools work with the `qwen3_coder` parser.
 

@@ -2,12 +2,13 @@
 # SDnvfp2 — Qwen3.8-Flash-Next with 2-bit experts on ONE DGX Spark (GB10, 128 GB), served by sglang.
 # Usage:  CKPT=/path/to/Qwen3.8-Next-SDnvfp2 ./run.sh [extra sglang args]
 # Env:    CODES (default $CKPT/dense_codes)  IMAGE  PORT (8934)  NAME (sdnvfp2)  MEMFRAC (0.80)  ACC (0.7)  CTX (32768)
+#         VISION=1 loads the vision tower too (default 0 = --language-only; all published numbers are text-only)
 set -euo pipefail
 HERE=$(cd "$(dirname "$0")" && pwd)
 CKPT=${CKPT:?set CKPT=<dir with the SDnvfp2 safetensors>}
 CODES=${CODES:-$CKPT/dense_codes}
 IMAGE=${IMAGE:-lmsysorg/sglang:qwen38flashnext}
-PORT=${PORT:-8934}; NAME=${NAME:-sdnvfp2}; MEMFRAC=${MEMFRAC:-0.80}; ACC=${ACC:-0.7}; CTX=${CTX:-32768}
+PORT=${PORT:-8934}; NAME=${NAME:-sdnvfp2}; MEMFRAC=${MEMFRAC:-0.80}; ACC=${ACC:-0.7}; CTX=${CTX:-32768}; VISION=${VISION:-0}
 S=/sgl-workspace/sglang/python/sglang
 [ -d "$CODES" ] || { echo "dense codes dir not found: $CODES"; exit 1; }
 if pgrep -f 'sglang::scheduler' >/dev/null; then echo "an sglang scheduler is already running on this box"; exit 2; fi
@@ -33,7 +34,7 @@ docker run -d --name "$NAME" --gpus all --network host --ipc=host --shm-size 32g
   -v "$HERE/sglang_patched/triton.py":$S/srt/layers/moe/moe_runner/triton.py:ro \
   -v "$HERE/sglang_patched/modelopt_quant.py":$S/srt/layers/quantization/modelopt_quant.py:ro \
   "$IMAGE" \
-  python3 -m sglang.launch_server --model-path /models/sdnvfp2 --trust-remote-code --language-only \
+  python3 -m sglang.launch_server --model-path /models/sdnvfp2 --trust-remote-code $([ "$VISION" = 1 ] || echo --language-only) \
   --quantization modelopt_fp4 --fp4-gemm-backend flashinfer_cutlass --moe-runner-backend triton \
   --kv-cache-dtype fp8_e4m3 --page-size 64 --mamba-scheduler-strategy extra_buffer --mamba-track-interval 64 \
   --chunked-prefill-size 8192 --max-prefill-tokens 32768 --max-running-requests 8 \
