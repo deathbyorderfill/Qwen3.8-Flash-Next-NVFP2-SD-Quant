@@ -42,7 +42,7 @@ directory (1.8 GB) are one Hugging Face repository:
 
 ```bash
 pip install -U huggingface_hub
-hf download <HF_ORG>/Qwen3.8-Next-SDnvfp2 --local-dir ./Qwen3.8-Next-SDnvfp2   # TODO: fill in the org once uploaded
+hf download sdworld/Qwen3.8-Next-SDnvfp2 --local-dir ./Qwen3.8-Next-SDnvfp2
 ```
 
 ## Run

@@ -16,11 +16,11 @@ Upload from the box that has them:
 ```bash
 pip install -U huggingface_hub
 hf auth login
-hf upload-large-folder <HF_ORG>/Qwen3.8-Next-SDnvfp2 /path/to/checkpoint --repo-type model      # resumable, parallel
-hf upload <HF_ORG>/Qwen3.8-Next-SDnvfp2 /path/to/dense_codes dense_codes --repo-type model
+hf upload-large-folder sdworld/Qwen3.8-Next-SDnvfp2 /path/to/checkpoint --repo-type model      # resumable, parallel
+hf upload sdworld/Qwen3.8-Next-SDnvfp2 /path/to/dense_codes dense_codes --repo-type model
 ```
 
-Then replace `<HF_ORG>` in `README.md`. Do **not** upload the `.complete.json` conversion markers,
+Then replace `sdworld` in `README.md`. Do **not** upload the `.complete.json` conversion markers,
 `conversion_environment.json`, `qualification-notes.md`, `smoke_report.json`,
 `validate_*_report.json`, `gsm8k_metrics.json`, `aime26_metrics.json`, `audit_unchanged_report.json`
 that sit next to the shards on the build box — they describe the conversion. Add a model card
