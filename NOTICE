@@ -1,0 +1,8 @@
+sglang_patched/*.py are modified copies of files from the sglang project
+(https://github.com/sgl-project/sglang, Apache License 2.0), taken from the image
+lmsysorg/sglang:qwen38flashnext (sglang commit d91c3682); the modifications add the 2-bit
+(W2A16) expert path. flashnext/flash_fwd.py is a modified copy of a flash-attention file
+(BSD-3-Clause); the other flashnext/*.py and model/*.py files are modified copies of sglang
+files for the Qwen3.8-Flash-Next model. The model weights are derived from Qwen3.8-Flash-Next
+and remain subject to that model's license. Everything else in this repository was written
+for this project.

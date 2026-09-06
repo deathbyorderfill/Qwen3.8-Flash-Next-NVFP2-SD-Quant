@@ -1,0 +1,25 @@
+{
+  "producer": {
+    "name": "modelopt",
+    "version": "0.46.0"
+  },
+  "quantization": {
+    "exclude_modules": [
+      "model.embed_tokens",
+      "mtp.*",
+      "model.mtp.*",
+      "*.self_attn.*",
+      "*.linear_attn.*",
+      "*.mlp.gate*",
+      "*.mlp.shared_expert.*",
+      "*.mlp.shared_expert_gate*",
+      "*hyper_connection*",
+      "*.ple.*",
+      "model.visual.*",
+      "model.language_model.embed_tokens",
+      "lm_head"
+    ],
+    "group_size": 16,
+    "quant_algo": "NVFP4"
+  }
+}

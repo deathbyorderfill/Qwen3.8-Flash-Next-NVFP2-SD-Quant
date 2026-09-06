@@ -1,0 +1,5 @@
+.view/
+results/
+runs/
+__pycache__/
+*.safetensors
